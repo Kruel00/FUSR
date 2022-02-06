@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <title>Document</title>
 </head>
-
 <body>
     <section class="vh-100" style="background-color: #508bfc;">
         <div class="container py-5 h-100">
@@ -33,12 +32,22 @@
                                     <input type="password" name="passwd" id="typePasswordX-2" required placeholder="Contraseña" class="form-control form-control-lg" />
                                     <label class="form-label" for="typePasswordX-2">Password</label>
                                     <br>
-                                    <button class="btn btn-primary btn-lg btn-block" name="login" id="login" type="submit">Login</button>
+                                    <button class="btn btn-primary btn-lg btn-block" name="login" id="login" type="submit">Entrar</button>
                                     <?php
-                                    if (isset($_GET['errorpass'])) {
-                                        echo "<hr><br>";
-                                        echo "<h5>Error contraseña incorrecta</h5>";
-                                        echo "<br><hr>";
+                                    if (isset($_GET['errorcode'])) {
+                                        echo "<hr>";
+                                        switch ($_GET['errorcode']){
+                                            case 1:
+                                                echo "<h5>Contraseña incorrecta</h5>";
+                                                break;
+                                            case 2:
+                                                echo "<h5>Por favor inicie sesion</h5>";
+                                                break;
+                                            case 3:
+                                                echo "<h5>Error usuario no existe</h5>";
+                                                break;
+                                        }
+                                        echo "<hr>";
                                     }
                                     ?>
                             </form>

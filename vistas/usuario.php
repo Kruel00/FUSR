@@ -1,7 +1,3 @@
-<?php
-session_start();
-$datosuser = $_SESSION['datosDelUsuario'];
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,18 +11,31 @@ $datosuser = $_SESSION['datosDelUsuario'];
 </head>
 
 <body>
-    <h1>Pagina de <?php echo $datosuser['nombre'] ?></h1>
+    <h1>Pagina de <?php /* echo $_SESSION['userdata']['nombre']  */ ?></h1>
     <br>
     <br>
     <div class="side-left-bar">
+        
 <?php 
-printf("
+session_start();
+if (isset($_SESSION['userdata'])) {
+    if($_SESSION['userdata']['UserRole'] != 1 )
+        {
+            session_destroy();
+            header("location: ../controladores/login.php?errorcode=2");
+        }
+} else {
+    echo "no ay session activa";
+    header("location: ../controladores/login.php?errorcode=2");
+}
+
+ printf("
     <ul>
         <li>Usuario: %s</li>
         <li>Nombre: %s</li>
         <li>Puesto: %s</li>
         <li><a href=\"../index.php\">Logout</a></li>
-    </ul>",strtoupper($datosuser['usuariodominio']) ,$datosuser['nombre'] . " " . $datosuser['apellido'],$datosuser['puesto']);
+    </ul>",$_SESSION['userdata']['UserName'],$_SESSION['userdata']['nombre'] . " " . $_SESSION['userdata']['apellido'],$_SESSION['userdata']['Puesto']); 
     ?>
     </div>
     
