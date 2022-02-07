@@ -37,8 +37,21 @@ if (isset($_POST['login'])) {
 /* Funcion crear sesion de usuario */
 function create_session($row)
 {
-    session_start();
+    include 'conect_db.php';
     ### Almacenar los datos del usuario en la session "userdata".
+    session_start();
+    
+    /* consultar nombre del departamento */
+    $numero_departamento = $row['Departamento'];
+    $consulta_departament = "SELECT NombreDepartamento FROM Departamento WHERE DepartamentoId = '$numero_departamento'";
+    $resultado_departamento = sqlsrv_query($con, $consulta_departament);
+    $departamento = sqlsrv_fetch_array($resultado_departamento);
+
+    /* consultar nombre del puesto */
+    $numero_puesto = $row['Puesto'];
+    $consulta_puesto = "SELECT descripcion FROM Puesto WHERE PuestoID = '$numero_puesto'";
+    $resultado_puesto = sqlsrv_query($con, $consulta_puesto);
+    $puesto = sqlsrv_fetch_array($resultado_puesto);
 
     $datosUsuario = [
         "UserName" => $row['UserName'],
@@ -49,7 +62,9 @@ function create_session($row)
         "Email" => $row['Email'],
         "Company" => $row['Company'],
         "Departamento" => $row['Departamento'],
+        "nombre_departamento" => $departamento['NombreDepartamento'],
         "Puesto" => $row['Puesto'],
+        "nombre_puesto" => $puesto['descripcion'],
         "UserRole" => $row['UserRole']
     ];
 

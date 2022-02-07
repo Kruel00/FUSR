@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <h1>Pagina de directivos</h1>
     <?php
     session_start();
     if (isset($_SESSION['userdata'])) {
@@ -21,6 +20,12 @@
         header("location: ../controladores/login.php?errorcode=2");
     }
     ?>
+
+        <!-- Header -->
+        <div class="row">
+                <?php include 'header.php'; ?>
+        </div>
+        <!-- Fin de header -->
 </body>
 
 </html>

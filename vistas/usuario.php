@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sitio.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <title>Document</title>
+    <title>Pagina de usuario</title>
 </head>
 
 <body>
 
     <?php
     session_start();
+
     if (isset($_SESSION['userdata'])) {
         if ($_SESSION['userdata']['UserRole'] != 1) {
             session_destroy();
@@ -24,45 +25,51 @@
     }
 
     include '../controladores/conect_db.php';
-
-    $consult = "SELECT * FROM users WHERE username = '$usuario'";
+    $consult = "SELECT descripcion FROM tipoSalida";
     $result = sqlsrv_query($con, $consult);
     $row = sqlsrv_fetch_array($result);
 
-    
-    function populate_format_combo(){
-
-    }
-
     ?>
     <div class="container-fluid">
+        <!-- Header -->
         <div class="row">
-            <h1>Area header</h1>
-            <img src="../img/company_logo_big.png" alt="">
+            <?php include 'header.php'; ?>
         </div>
-        <div class="row ">
-            <div class="col-sm">
-                <h1>Area seleccion de formatos</h1>
-                <label for="">Seleccione formato:</label>
+        <!-- Fin de header -->
 
-                <select name="slct_entrada_salida" id="slct_entrada_salida">
-                        <option value="0" selected disabled>Seleecciones una opcion</option>
-                        <option value="1">Salida</option>
-                        <option value="2">Entrada</option>
-                    </select>
+        <div class="row">
+            <div class="col-2">
+                <h1>Area seleccion de formatos</h1>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected disabled>Seleecciones departamento</option>
+                    <option value="1">Seguridad patrimonial</option>
+                    <option value="2">Recursos humanos</option>
+                    <option value="3">Ingenieria de procesos</option>
+                    <option value="4">IT Support</option>
+                    <option value="5">IT Jigs</option>
+                    <option value="6">IT Systems</option>
+                </select>
+                <br>
+                <select class="form-select" aria-label="Default select example">
+                <option selected>Selecione formato</option>
+                <option value="1">Pase de salida</option>
+                <option value="2">Permiso de trabajo</option>
+                <option value="3">Solicitud de camaras</option>
+                </select>
+
             </div>
-            <div class="col">
-                <h1>Area formatos</h1>
+            <div class="col-7">
                 <div>
                     <?php
-                        include '../vistas/formatos/seguridad_patrimonial/pase_de_salida.html';
+                    include '../vistas/formatos/seguridad-patrimonial/pase_de_salida.html';
                     ?>
                 </div>
             </div>
         </div>
         <div class="row">
-            <h1>area boton</h1>
+            <h1>area footer</h1>
         </div>
     </div>
 </body>
+
 </html>

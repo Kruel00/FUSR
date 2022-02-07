@@ -9,8 +9,6 @@
 </head>
 
 <body>
-    <h1>pagina de administrador</h1>
-
     <?php
     session_start();
     if (isset($_SESSION['userdata'])) {
@@ -23,6 +21,12 @@
     }
     ?>
 
+    <!-- Header -->
+    <div class="row">
+                <?php include 'header.php'; ?>
+        </div>
+        <!-- Fin de header -->
+        
 </body>
 
 </html>

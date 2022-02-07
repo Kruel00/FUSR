@@ -56,6 +56,11 @@
                                             case 4:
                                                 echo "<h5>Capcha invalido!</h5>";
                                                 break;
+                                            case 5:
+                                                echo "<h5>Cerro sesión</h5>";
+                                                session_start();
+                                                session_destroy();
+                                                break;
                                         }
                                         echo "<hr>";
                                     }
