@@ -14,13 +14,11 @@
     <?php
     session_start();
     if (isset($_SESSION['userdata'])) {
-        if($_SESSION['userdata']['UserRole'] != 3 )
-        {
+        if ($_SESSION['userdata']['UserRole'] != 3) {
             session_destroy();
             header("location: ../controladores/login.php?errorcode=2");
         }
     } else {
-        echo "no ay session activa";
         header("location: ../controladores/login.php?errorcode=2");
     }
     ?>

@@ -1,37 +1,45 @@
 <?php
-/* if(isset($_SESSION)){
-    session_destroy();
-} */
-
 if (isset($_POST['login'])) {
-    $usuario = $_POST['username'];
-    $userpass = $_POST['passwd'];
-    $database = "pt1";
-    $username = "webuser";
-    $pass = "a7um0WDTTl";
-    $servername = "localhost";
-    $conectionInfo = array("Database" => $database, "UID" => $username, "PWD" => $pass);
-    $con = sqlsrv_connect($servername, $conectionInfo);
-    $consult = "SELECT * FROM users WHERE username = '$usuario'";
-    $result = sqlsrv_query($con, $consult);
-    $row = sqlsrv_fetch_array($result);
+    /* Verificacion del captcha */
+    $secretKey = "6LfFjGAeAAAAAG7ETE2-FjNc4bLbOAD1fqwx_42e";
+    $responseKey = $_POST['g-recaptcha-response'];
+    $userIP = $_SERVER['REMOTE_ADDR'];
+    $verifcador = "https://www.google.com/recaptcha/api/siteverify?secret=";
+    $url = "$verifcador$secretKey&response=$responseKey&remoteip=$userIP";
+    $response = file_get_contents($url);
+    $response = json_decode($response);
 
 
-    if ($userpass == $row['UserPassword']) {
-        echo "SI ES IGUANAS<br>";
-        create_session($row);
-    } else {
-        header("location: login.php?errorcode=1");
+    if($response->success){
+        $usuario = $_POST['username'];
+        $userpass = $_POST['passwd'];
+        include 'conect_db.php';
+        $consult = "SELECT * FROM users WHERE username = '$usuario'";
+        $result = sqlsrv_query($con, $consult);
+        $row = sqlsrv_fetch_array($result);
+        
+            /* si el password recivido es igual al de la base de datos */
+        if ($userpass == $row['UserPassword']) {
+            /* llamamos a la funcion para crear la sesion de usuario */
+            create_session($row);
+        } else {
+            /* si no es igual regresamos a la pagina de login con el codigo de error 1 */
+            header("location: login.php?errorcode=1");
+        }
+    }
+    else{
+        /* Captcha incorrecto */
+        header("location: login.php?errorcode=4");
     }
 
-} else {
-    header("location: login.php");
 }
 
+/* Funcion crear sesion de usuario */
 function create_session($row)
 {
     session_start();
     ### Almacenar los datos del usuario en la session "userdata".
+
     $datosUsuario = [
         "UserName" => $row['UserName'],
         "UserPassword" => $row['UserPassword'],
@@ -47,8 +55,7 @@ function create_session($row)
 
     $_SESSION["userdata"] = $datosUsuario;
 
-    /* redireccionar a su pagina */
-    switch ($_SESSION['userdata']['UserRole']){
+     switch ($_SESSION['userdata']['UserRole']){
         case 1 : 
             header("location: ../vistas/usuario.php");
             break;
