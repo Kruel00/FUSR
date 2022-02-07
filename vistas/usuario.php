@@ -11,54 +11,58 @@
 </head>
 
 <body>
-    <h1>Pagina de <?php /* echo $_SESSION['userdata']['nombre']  */ ?></h1>
-    <br>
-    <br>
-    <div class="side-left-bar">
-        
-<?php 
-session_start();
-if (isset($_SESSION['userdata'])) {
-    if($_SESSION['userdata']['UserRole'] != 1 )
-        {
+
+    <?php
+    session_start();
+    if (isset($_SESSION['userdata'])) {
+        if ($_SESSION['userdata']['UserRole'] != 1) {
             session_destroy();
             header("location: ../controladores/login.php?errorcode=2");
         }
-} else {
-    echo "no ay session activa";
-    header("location: ../controladores/login.php?errorcode=2");
-}
+    } else {
+        header("location: ../controladores/login.php?errorcode=2");
+    }
 
- printf("
-    <ul>
-        <li>Usuario: %s</li>
-        <li>Nombre: %s</li>
-        <li>Puesto: %s</li>
-        <li><a href=\"../index.php\">Logout</a></li>
-    </ul>",$_SESSION['userdata']['UserName'],$_SESSION['userdata']['nombre'] . " " . $_SESSION['userdata']['apellido'],$_SESSION['userdata']['Puesto']); 
-    ?>
-    </div>
+    include '../controladores/conect_db.php';
+
+    $consult = "SELECT * FROM users WHERE username = '$usuario'";
+    $result = sqlsrv_query($con, $consult);
+    $row = sqlsrv_fetch_array($result);
+
     
-    <table>
-        <tr>
-            <td># requisision</td>
-            <td>Tipo</td>
-            <td>Area</td>
-            <td>Descripcion</td>
-            <td>Fecha de creacion</td>
-            <td>Evidencia</td>
-        </tr>
-        <tr>
-            <td> - </td>
-            <td> - </td>
-            <td> - </td>
-            <td> - </td>
-            <td> - </td>
-            <td> <a href="">Ver</a> </td>
-        </tr>
-    </table>
+    function populate_format_combo(){
 
+    }
 
+    ?>
+    <div class="container-fluid">
+        <div class="row">
+            <h1>Area header</h1>
+            <img src="../img/company_logo_big.png" alt="">
+        </div>
+        <div class="row ">
+            <div class="col-sm">
+                <h1>Area seleccion de formatos</h1>
+                <label for="">Seleccione formato:</label>
+
+                <select name="slct_entrada_salida" id="slct_entrada_salida">
+                        <option value="0" selected disabled>Seleecciones una opcion</option>
+                        <option value="1">Salida</option>
+                        <option value="2">Entrada</option>
+                    </select>
+            </div>
+            <div class="col">
+                <h1>Area formatos</h1>
+                <div>
+                    <?php
+                        include '../vistas/formatos/seguridad_patrimonial/pase_de_salida.html';
+                    ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h1>area boton</h1>
+        </div>
+    </div>
 </body>
-
 </html>
