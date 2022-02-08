@@ -15,7 +15,9 @@
         <div class="container-fluid header">
             <img src="/img/company_logo_big.png" alt="">
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="navbar" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="#"><b> Nombre: </b><?php echo $_SESSION['userdata']['nombre'] . $_SESSION['userdata']['apellido'] ?></a>
@@ -26,9 +28,12 @@
                 </div>
             </div>
         </nav>
+ 
 
+    
         <hr>
     </header>
+    <script src="/js/bootstrap.js"></script>
 </body>
 
 </html>
