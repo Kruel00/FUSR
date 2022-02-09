@@ -40,15 +40,23 @@
             <div class="col-2">
                 <h1>Area seleccion de formatos</h1>
                 <form action="" method="POST">
-                    <select class="form-select" onchange="activar_boton_mostrar()" name="select_format" id="seleccion-departamento" aria-label="Default select example">
-                        <option value="0" selected disabled>Seleecciones departamento</option>
-                        <option value="1">Seguridad patrimonial</option>
-                        <option value="2">Recursos humanos</option>
-                        <option value="3">Ingenieria de procesos</option>
-                        <option value="4">IT Support</option>
-                        <option value="5">IT Jigs</option>
-                        <option value="6">IT Systems</option>
+                    <div class="form-group">
+                    <select class="form-control form-control-lg" id="" onchange="activar_boton_mostrar()" name="select_format"  aria-label="Default select example">
+                        <option selected disabled>Seleeccione formato</option>
+                        <option disabled><b>Seguridad patrimonial</b></option>
+                        <option value="1">-> Salida de material</option>
+                        <option value="2">-> Revicion de camaras</option>
+                        <option value="3">-> Permiso de trabajo</option>
+                        <option disabled>Recursos humanos</option>
+                        <option value="4">-> Solicitud de vacaciones</option>
+                        <option value="5">-> Pase de salida</option>
+                        <option disabled>Ingenieria de procesos</option>
+                        <option value="6">IT Support</option>
+                        <option value="7">IT Jigs</option>
+                        <option value="8">IT Systems</option>
                     </select>
+                    </div>
+                    
                     <br>
                     <input type="submit" disabled name="seleccion" id="boton_mostrar" value="Mostrar">
                 </form>
@@ -60,16 +68,37 @@
                     if (isset($_POST['seleccion'])) {
                         mostrar_catalogo_departamento($_POST['select_format']);
                     }
-
-                    var_dump($_POST);
                     function mostrar_catalogo_departamento($index)
                     {
-                        var_dump($index);
                         switch ($index) {
                             case "1":
-                                include 'Formatos/seguridad-patrimonial/indice_formatos.html';
+                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                break;
+                            case "2":
+                                var_dump($index);
+                                break;
+                            case "3":
+                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                break;
+                            case "4":
+                                var_dump($index);
                                 break;
                             case "5":
+                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                break;
+                            case "6":
+                                var_dump($index);
+                                break;
+                            case "7":
+                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                break;
+                            case "8":
+                                var_dump($index);
+                                break;
+                            case "9":
+                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                break;
+                            case "10":
                                 var_dump($index);
                                 break;
                         }
