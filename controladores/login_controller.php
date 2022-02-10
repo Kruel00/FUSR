@@ -1,4 +1,5 @@
 <?php
+if(isset($_SESSION)){session_destroy();}
 if (isset($_POST['login'])) {
     /* Verificacion del captcha */
     $secretKey = "6LfFjGAeAAAAAG7ETE2-FjNc4bLbOAD1fqwx_42e";

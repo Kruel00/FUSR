@@ -38,14 +38,14 @@
 
         <div class="row">
             <div class="col-2">
-                <h1>Area seleccion de formatos</h1>
+                <h2>Formato</h2>
                 <form action="" method="POST">
                     <div class="form-group">
                     <select class="form-control form-control-lg" id="" onchange="activar_boton_mostrar()" name="select_format"  aria-label="Default select example">
                         <option selected disabled>Seleeccione formato</option>
                         <option disabled><b>Seguridad patrimonial</b></option>
                         <option value="1">-> Salida de material</option>
-                        <option value="2">-> Revicion de camaras</option>
+                        <option value="2">-> Acceso a didispositivo</option>
                         <option value="3">-> Permiso de trabajo</option>
                         <option disabled>Recursos humanos</option>
                         <option value="4">-> Solicitud de vacaciones</option>
@@ -75,13 +75,13 @@
                                 include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
                                 break;
                             case "2":
-                                var_dump($index);
+                                include 'Formatos/seguridad-patrimonial/entrada-dispositivo.php';
                                 break;
                             case "3":
-                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                
                                 break;
                             case "4":
-                                var_dump($index);
+                                include 'Formatos/rh/vacaciones.php';
                                 break;
                             case "5":
                                 include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
