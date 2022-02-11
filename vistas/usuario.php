@@ -28,6 +28,12 @@
     $consult = "SELECT descripcion FROM tipoSalida";
     $result = sqlsrv_query($con, $consult);
     $row = sqlsrv_fetch_array($result);
+
+    /* consultar departamentos */
+    $consulta_departamentos ="select NombreDepartamento from Departamento";
+    $resultado_departamentos = sqlsrv_query($con, $consulta_departamentos);
+    $row_departamento = sqlsrv_fetch_array($resultado_departamentos);
+
     ?>
     <div class="container-fluid">
         <!-- Header -->
@@ -72,7 +78,7 @@
                     {
                         switch ($index) {
                             case "1":
-                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                include 'Formatos/seguridad-patrimonial/pase_de_salida.php';
                                 break;
                             case "2":
                                 include 'Formatos/seguridad-patrimonial/entrada-dispositivo.php';
@@ -84,7 +90,7 @@
                                 include 'Formatos/rh/vacaciones.php';
                                 break;
                             case "5":
-                                include 'Formatos/seguridad-patrimonial/pase_de_salida.html';
+                                include 'Formatos/seguridad-patrimonial/pase_de_salida.php';
                                 break;
                             case "6":
                                 var_dump($index);

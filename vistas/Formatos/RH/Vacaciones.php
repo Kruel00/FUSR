@@ -33,11 +33,11 @@ $departamento =  $_SESSION['userdata']['nombre_departamento'];
             <div class="row">
                 <div class="form-group col">
                     <label for="">Nombre: </label>
-                    <input class="form-control" type="text" name="" id="" value="<?php echo $nombre; ?>">
+                    <input disabled class="form-control" type="text" name="" id="" value="<?php echo $nombre; ?>">
                 </div>
                 <div class="form-group col">
-                    <label for="">Numero de empleado: </label>
-                    <input class="form-control" type="text" value="60663">
+                    <label for="" >Numero de empleado: </label>
+                    <input class="form-control" type="text" disabled value="<?php echo $numero_empleado; ?>">
                 </div>
             </div>
 
