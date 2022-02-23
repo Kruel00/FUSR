@@ -4014,7 +4014,9 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  margin-left: 1rem;
 }
+
 .navbar > .container,
 .navbar > .container-fluid,
 .navbar > .container-sm,
@@ -4102,7 +4104,7 @@ textarea.form-control-lg {
 @media (min-width: 576px) {
   .navbar-expand-sm {
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
   }
   .navbar-expand-sm .navbar-nav {
     flex-direction: row;
@@ -4155,7 +4157,7 @@ textarea.form-control-lg {
 @media (min-width: 768px) {
   .navbar-expand-md {
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
   }
   .navbar-expand-md .navbar-nav {
     flex-direction: row;

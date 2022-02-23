@@ -16,7 +16,10 @@
             <img src="/img/company_logo_big.png" alt="">
         </div>
 
-
+        <?php 
+            $fecha = new DateTime();
+            echo $fecha->getTimestamp();
+        ?>
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="navbar" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
@@ -24,7 +27,7 @@
                     <a class="nav-item nav-link active" href="#"><b> Puesto: </b><?php echo $_SESSION['userdata']['nombre_puesto'] ?></a>
                     <a class="nav-item nav-link active" href="#"><b> Departamento: </b><?php echo $_SESSION['userdata']['nombre_departamento'] ?></a>
                     <a class="nav-item nav-link active" href="#"><b> Email: </b><?php echo $_SESSION['userdata']['Email'] ?></a>
-                    <a class="nav-item nav-link active red" href="/controladores/login.php?errorcode=5"><b>Cerrar sesion</b></a>
+                    <a class="nav-item nav-link active red" style="color:blue" href="/controladores/login.php?errorcode=5"><b>Cerrar sesion</b></a>
                 </div>
             </div>
         </nav>
